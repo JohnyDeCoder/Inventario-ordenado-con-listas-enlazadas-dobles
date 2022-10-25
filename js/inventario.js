@@ -72,8 +72,6 @@ class Inventario {
 
     buscar(codigo) {
         if (this.primero) {
-            console.log(this.primero.codigo);
-
             if (this.primero.codigo === codigo) {
                 return this.primero;
             }
@@ -93,5 +91,29 @@ class Inventario {
             }
         }
         return null;
+    }
+
+    listar() {
+        if (this.primero) {
+            let lista = "", temp = this.primero;
+            while (temp) {
+                lista += temp.info();
+                temp = temp.sig;
+            }
+            return lista;
+        }
+        return "NO HAY PRODUCTOS";
+    }
+
+    listarInverso() {
+        if (this.primero) {
+            let lista = "", temp = this.ultimo;
+            while (temp) {
+                lista += temp.info();
+                temp = temp.ant;
+            }
+            return lista;
+        }
+        return "NO HAY PRODUCTOS";
     }
 }
