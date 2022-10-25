@@ -69,4 +69,29 @@ class Inventario {
         }
         return false;
     }
+
+    buscar(codigo) {
+        if (this.primero) {
+            console.log(this.primero.codigo);
+
+            if (this.primero.codigo === codigo) {
+                return this.primero;
+            }
+            else if (this.ultimo.codigo === codigo) {
+                return this.ultimo;
+            }
+            else {
+                let temp = this.primero.sig;
+
+                while (temp) {
+                    if (temp.codigo === codigo) {
+                        return temp;
+                    }
+                    temp = temp.sig;
+                }
+                return null;
+            }
+        }
+        return null;
+    }
 }
