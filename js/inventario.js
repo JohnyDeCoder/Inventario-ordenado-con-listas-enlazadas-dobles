@@ -35,4 +35,38 @@ class Inventario {
             this.ultimo = producto;
         }
     }
+
+    eliminar(codigo) {
+        if (this.primero) {
+            if (this.primero.codigo === codigo) {
+                if (this.primero.sig) {
+                    this.primero.sig.ant = this.primero.ant;
+                    this.primero = this.primero.sig;
+                }
+                else {
+                    this.primero = null;
+                    this.ultimo = null;
+                }
+            }
+            else if (this.ultimo.codigo === codigo) {
+                this.ultimo.ant.sig = this.ultimo.sig;
+                this.ultimo = this.ultimo.ant
+            }
+            else {
+                let temp = this.primero.sig;
+
+                while (temp) {
+                    if (temp.codigo === codigo) {
+                        temp.ant.sig = temp.sig;
+                        temp.sig.ant = temp.ant;
+                        return true;
+                    }
+                    temp = temp.sig;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
 }
